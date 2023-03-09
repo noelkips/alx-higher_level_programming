@@ -1,29 +1,18 @@
 #!/usr/bin/python3
-from calculator_1 import add, sub, mul, div
-
-
-def arg_calc(argv):
-    n = len(argv) - 1
-    if n != 3:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
-        exit(1)
-    a = int(argv[1])
-    operation = argv[2]
-    b = int(argv[3])
-    if operation == '+':
-        print("{:d} {:s} {:d} = {:d}".format(a, operation, b, add(a, b)))
-    elif operation == '-':
-        print("{:d} {:s} {:d} = {:d}".format(a, operation, b, sub(a, b)))
-    elif operation == '*':
-        print("{:d} {:s} {:d} = {:d}".format(a, operation, b, mul(a, b)))
-    elif operation == '/':
-        print("{:d} {:s} {:d} = {:d}".format(a, operation, b, div(a, b)))
-    else:
-        print("Unknown operationerator. Available operationerators:\
-                +, -, * and /")
-        exit(1)
-
 
 if __name__ == "__main__":
+    from calculator_1 import add, sub, mul, div
     import sys
-    arg_calc(sys.argv)
+
+    if len(sys.argv) - 1 != 3:
+        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
+        sys.exit(1)
+
+    ops = {"+": add, "-": sub, "*": mul, "/": div}
+    if sys.argv[2] not in list(ops.keys()):
+        print("Unknown operator. Available operators: +, -, * and /")
+        sys.exit(1)
+
+    a = int(sys.argv[1])
+    b = int(sys.argv[3])
+    print("{} {} {} = {}".format(a, sys.argv[2], b, ops[sys.argv[2]](a, b)))
