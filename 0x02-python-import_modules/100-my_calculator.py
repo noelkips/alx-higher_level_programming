@@ -19,7 +19,8 @@ def arg_calc(argv):
     elif operation == '/':
         print("{:d} {:s} {:d} = {:d}".format(a, operation, b, div(a, b)))
     else:
-        print("Unknown operationerator. Available operationerators: +, -, * and /")
+        print("Unknown operationerator. Available operationerators:\
+                +, -, * and /")
         exit(1)
 
 
